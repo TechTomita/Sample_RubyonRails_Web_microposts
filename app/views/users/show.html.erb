@@ -12,9 +12,14 @@
     
     <div class="col-sm-8">
         <ul class="nav nav-tabs nav-justified mb-3">
-            <li class="nav-item"><a class="nav-link" href="#"></a>Microposts</li>
+            <li class="nav-item">
+                <a class="nav-link <%= "active" if current_page?(user_path(@user)) %>" href="<%= user_path(@user) %>">
+                    Microposts <span class="badge bg-secondary"><%= @count_posts %></span>
+                </a>
+            </li>
             <li class="nav-item"><a class="nav-link" href="#"></a>Followings</li>
             <li class="nav-item"><a class="nav-link" href="#"></a>Followers</li>
         </ul>
+        <%= render "microposts/microposts", microposts: @microposts %>
     </div>
 </div>

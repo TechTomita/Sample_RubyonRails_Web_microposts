@@ -1,0 +1,25 @@
+<%#= render "microposts/microposts", microposts: @microposts %>
+<% if microposts.any? %>
+    <ul class="list-unstyled mt-2">
+        <% microposts.each do |mpost| %>
+            <li class="d-flex">
+                <img class="rounded me-2 mb-5" src="<%= gravatar_url(mpost.user, {size: 64}) %>" alt="">
+                <div>
+                    <div>
+                        <%= link_to mpost.user.name, user_path(mpost.user), class: "text-decoration-none" %>
+                        <span class="text-muted">posted at <%= mpost.created_at %></span>
+                    </div>
+                    <div>
+                        <p><%= mpost.content %></p>
+                    </div>
+                    <div>
+                        <% if current_user == mpost.user %>
+                            <%= link_to "Delete", mpost, data: {turbo_method: :delete,  turbo_confirm: 'Are you sure?'}, class: "btn btn-danger btn-sm" %>
+                        <% end %>
+                    </div>
+                </div>
+            </li>
+        <% end %>
+    </ul>
+    <%== pagy_bootstrap_nav(@pagy) %>
+<% end %>
