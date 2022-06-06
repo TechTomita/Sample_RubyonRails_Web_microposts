@@ -13,7 +13,7 @@ class RelationshipsController < ApplicationController
     user = User.find(params[:follow_id])
     
     current_user.unfollow(user)
-    flash[:success] = "ユーザのフォローを解除しました。"
+    flash[:danger] = "ユーザのフォローを解除しました。"
     redirect_to user
   end
 end
