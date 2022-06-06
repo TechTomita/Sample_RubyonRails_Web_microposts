@@ -6,6 +6,9 @@ class User < ApplicationRecord
     has_many :reverse_of_relationship, class_name: "Relationship", foreign_key: "follow_id"
     has_many :followers, through: :reverse_of_relationship, source: :user
     
+    has_many :favorites
+    has_many :favorite_post, through: :favorites, source: :post
+    
     validates :name, presence: true, length: {maximum: 50}
     validates :email, presence: true, length: {maximum: 255}, format: {with: /\A[\w\-.]+@[a-z\d\-.]+\.[a-z]+\z/i}, uniqueness: {case_sensitive: false}
     
