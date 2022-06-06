@@ -18,8 +18,16 @@
                     Microposts <span class="badge bg-secondary"><%= @count_posts %></span>
                 </a>
             </li>
-            <li class="nav-item"><a class="nav-link" href="#"></a>Followings</li>
-            <li class="nav-item"><a class="nav-link" href="#"></a>Followers</li>
+            <li class="nav-item">
+                <a class="nav-link <%= "active" if current_page?(followings_user_path(@user)) %>" href="<%= followings_user_path(@user) %>">
+                    Followings <span class="badge bg-secondary"><%= @count_followings %></span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link <%= "active" if current_page?(followers_user_path(@user)) %>" href="<%= followers_user_path(@user) %>">
+                    Followers <span class="badge bg-secondary"><%= @count_followers %></span>
+                </a>
+            </li>
         </ul>
         <%= render "microposts/microposts", microposts: @microposts %>
     </div>
