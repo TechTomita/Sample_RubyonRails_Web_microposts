@@ -25,14 +25,14 @@ class UsersController < ApplicationController
       flash.now[:danger] = "ユーザの登録に失敗しました。"
       render :new, status: :unprocessable_entity #status: :unprocessable_entity rails7.0以降追記が必要
     end
+  end
+  
+  def followings
+    @pagy, @followings = pagy(@user.followings)
+  end
     
-    def followings
-      @pagy, @followings = psgy(@user.followings)
-    end
-    
-    def followers
-      @pagy, @followers = pagy(@user.followers)
-    end
+  def followers
+    @pagy, @followers = pagy(@user.followers)
   end
   
   
