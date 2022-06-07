@@ -35,6 +35,10 @@ class UsersController < ApplicationController
     @pagy, @followers = pagy(@user.followers)
   end
   
+  def likes
+    @pagy, @favorites = pagy(@user.favorite_post)
+  end
+  
   
   private
   
