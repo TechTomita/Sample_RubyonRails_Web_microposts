@@ -10,5 +10,10 @@ class FavoritesController < ApplicationController
   end
 
   def destroy
+    fav_post = Micropost.find(params[:post_id])
+    
+    current_user.unfavorite(fav_post)
+    flash[:danger] = "お気に入りを解除しました。"
+    redirect_to root_path #likes_pathに変更する
   end
 end
