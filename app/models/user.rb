@@ -50,7 +50,7 @@ class User < ApplicationRecord
     end
     
     def favorite?(post_item)
-        unless self.favorites.include?(post_item)
+        unless self.favorite_post.include?(post_item)
         end
     end
 end
