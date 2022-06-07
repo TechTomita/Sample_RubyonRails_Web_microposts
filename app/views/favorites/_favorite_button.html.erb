@@ -1,0 +1,11 @@
+<% if current_user.favorite?(post_item) %>
+    <%= form_with(model: current_user.favorites.find_by(post_id: post_item.id), method: :delete) do |f| %>
+        <%= hidden_field_tag :post_id, post_item.id %>
+        <%= f.submit "Unfavorite", class: "btn btn-danger bt-sm" %>
+    <% end %>
+<% else %>
+    <%= form_with(model: current_user.favorites.build) do |f| %>
+        <%= hidden_field_tag :post_id, post_item.id %>
+        <%= f.submit "Favorite", class: "btn btn-primary bt-sm" %>
+    <% end %>
+<% end %>
