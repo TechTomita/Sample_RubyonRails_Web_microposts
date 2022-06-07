@@ -39,9 +39,7 @@ class User < ApplicationRecord
     
     # お気に入り機能
     def favorite(post_item)
-        unless self.microposts.include?(post_item)
-            self.favorites.find_or_create_by(post_id: post_item.id)
-        end
+        self.favorites.find_or_create_by(post_id: post_item.id)
     end
     
     def unfavorite(post_item)
