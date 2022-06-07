@@ -6,7 +6,7 @@ class FavoritesController < ApplicationController
     
     current_user.favorite(fav_post)
     flash[:success] = "お気に入り登録しました。"
-    redirect_to root_path #likes_pathに変更する
+    redirect_to likes_user_url(current_user)
   end
 
   def destroy
@@ -14,6 +14,6 @@ class FavoritesController < ApplicationController
     
     current_user.unfavorite(fav_post)
     flash[:danger] = "お気に入りを解除しました。"
-    redirect_to root_path #likes_pathに変更する
+    redirect_to likes_user_url(current_user)
   end
 end
