@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :require_user_logged_in, only: [:index, :show, :followings, :followers]
-  before_action :find_user, only: [:show, :followings, :followers]
-  before_action :count_user, only: [:show, :followings, :followers]
+  before_action :find_user, only: [:show, :followings, :followers, :likes]
+  before_action :count_user, only: [:show, :followings, :followers, :likes]
   
   def index
     @pagy, @users = pagy(User.order(id: :desc), items: 15)
@@ -33,6 +33,10 @@ class UsersController < ApplicationController
     
   def followers
     @pagy, @followers = pagy(@user.followers)
+  end
+  
+  def likes
+    @pagy, @favorites = pagy(@user.favorite_post)
   end
   
   

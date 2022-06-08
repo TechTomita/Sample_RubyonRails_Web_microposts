@@ -13,8 +13,11 @@
                         <p><%= mpost.content %></p>
                     </div>
                     <div>
+                        <!-- 投稿が自分の投稿か? -->
                         <% if current_user == mpost.user %>
                             <%= link_to "Delete", mpost, data: {turbo_method: :delete,  turbo_confirm: 'Are you sure?'}, class: "btn btn-danger btn-sm" %>
+                        <% else %>
+                            <%= render "favorites/favorite_button", post_item: mpost %>
                         <% end %>
                     </div>
                 </div>

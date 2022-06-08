@@ -6,6 +6,9 @@ class User < ApplicationRecord
     has_many :reverse_of_relationship, class_name: "Relationship", foreign_key: "follow_id"
     has_many :followers, through: :reverse_of_relationship, source: :user
     
+    has_many :favorites
+    has_many :favorite_post, through: :favorites, source: :post
+    
     validates :name, presence: true, length: {maximum: 50}
     validates :email, presence: true, length: {maximum: 255}, format: {with: /\A[\w\-.]+@[a-z\d\-.]+\.[a-z]+\z/i}, uniqueness: {case_sensitive: false}
     
@@ -32,5 +35,19 @@ class User < ApplicationRecord
     # タイムライン
     def feed_microposts
         Micropost.where(user_id: self.following_ids + [self.id])
+    end
+    
+    # お気に入り機能
+    def favorite(post_item)
+        self.favorites.find_or_create_by(post_id: post_item.id)
+    end
+    
+    def unfavorite(post_item)
+        favorite = self.favorites.find_by(post_id: post_item.id)
+        favorite.destroy if favorite
+    end
+    
+    def favorite?(post_item)
+        self.favorite_post.include?(post_item)
     end
 end
