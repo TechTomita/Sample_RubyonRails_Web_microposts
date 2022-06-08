@@ -66,6 +66,7 @@ GEM
       i18n (>= 1.6, < 2)
       minitest (>= 5.1)
       tzinfo (~> 2.0)
+    bcrypt (3.1.18)
     bindex (0.8.1)
     bootsnap (1.12.0)
       msgpack (~> 1.2)
@@ -118,6 +119,8 @@ GEM
     nio4r (2.5.8)
     nokogiri (1.13.6-x86_64-linux)
       racc (~> 1.4)
+    pagy (5.10.1)
+      activesupport
     puma (5.6.4)
       nio4r (~> 2.0)
     racc (1.6.0)
@@ -185,11 +188,13 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  bcrypt (~> 3.1.7)
   bootsnap
   debug
   importmap-rails
   jbuilder
   mysql2 (~> 0.5)
+  pagy
   puma (~> 5.0)
   rails (~> 7.0.3)
   sprockets-rails

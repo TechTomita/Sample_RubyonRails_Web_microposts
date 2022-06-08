@@ -1,0 +1,10 @@
+<%#= form_with(model: @user) do |f| %>
+<% if model.errors.any? %>
+    <div id="error_explanation" class="alert alert-warning">
+        <ul class="mb-0">
+            <% model.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+        </ul>
+    </div>
+<% end %>
